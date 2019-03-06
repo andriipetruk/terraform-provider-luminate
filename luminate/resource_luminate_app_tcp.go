@@ -44,6 +44,9 @@ func resourceLuminateAppTcpCreate(d *schema.ResourceData, meta interface{}) erro
 	// -- Create tcp application
 	newAppTCP := goluminate.AppTcpCreateRequest{Name: d.Get("app_name").(string), Type: "TCP", IsVisible: true, IsNotificationEnabled: true}
 	var TcpAppPortList []string
+	var subdomain string
+	subdomain = strings.Replace(d.Get("app_name").(string), " ", "", -1)
+	newAppTCP.ConnectionSettings.Subdomain=strings.ToLower(subdomain)
 	TcpAppPortList = append(TcpAppPortList, d.Get("tcp_port").(string))
 	newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, goluminate.TcpTunnelSettings{Target: d.Get("internal_address").(string), Ports: TcpAppPortList})
 	ctx := context.Background()
