@@ -2,6 +2,7 @@ package luminate
 
 import (
 	"context"
+        "strings"
 	"github.com/andriipetruk/go-luminate/luminate"
 	"github.com/hashicorp/terraform/helper/schema"
 )
