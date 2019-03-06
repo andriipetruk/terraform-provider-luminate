@@ -137,7 +137,9 @@ type AppTcpCreateRequest struct {
     Name                  string `json:"name"`
     IsVisible             bool   `json:"isVisible"`
     IsNotificationEnabled bool   `json:"isNotificationEnabled"`
-    ConnectionSettings    interface{} `json:"connectionSettings"`
+    ConnectionSettings struct {
+        Subdomain string `json:"subdomain"`
+    } `json:"connectionSettings"`
     TcpTunnelSettings []TcpTunnelSettings `json:"tcpTunnelSettings"`
 }
 

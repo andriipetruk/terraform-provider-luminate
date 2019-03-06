@@ -2,9 +2,9 @@ package luminate
 
 import (
 	"context"
-        "strings"
 	"github.com/andriipetruk/go-luminate/luminate"
 	"github.com/hashicorp/terraform/helper/schema"
+	"strings"
 )
 
 func resourceLuminateAppTcp() *schema.Resource {
@@ -47,7 +47,7 @@ func resourceLuminateAppTcpCreate(d *schema.ResourceData, meta interface{}) erro
 	var TcpAppPortList []string
 	var subdomain string
 	subdomain = strings.Replace(d.Get("app_name").(string), " ", "", -1)
-	newAppTCP.ConnectionSettings.Subdomain=strings.ToLower(subdomain)
+	newAppTCP.ConnectionSettings.Subdomain = strings.ToLower(subdomain)
 	TcpAppPortList = append(TcpAppPortList, d.Get("tcp_port").(string))
 	newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, goluminate.TcpTunnelSettings{Target: d.Get("internal_address").(string), Ports: TcpAppPortList})
 	ctx := context.Background()

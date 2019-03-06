@@ -21,10 +21,16 @@
 			"revisionTime": "2019-02-22T19:05:28Z"
 		},
 		{
-			"checksumSHA1": "65Wjakxp0gD0lmStT7pSB9kVgeI=",
+			"checksumSHA1": "8inihUE6YN/cQ6mlY/Ae6MMKbi4=",
+			"path": "github.com/andriipetruk/go-luminate",
+			"revision": "50fb3c750a1dccb1c81844c2379519b5bc3d33e3",
+			"revisionTime": "2019-03-06T13:52:50Z"
+		},
+		{
+			"checksumSHA1": "q5LmUlN5oB9Win7QWoUwv6BCtG0=",
 			"path": "github.com/andriipetruk/go-luminate/luminate",
-			"revision": "2ed9aca90e32c637afe32fc36b1c6f2cb47294c9",
-			"revisionTime": "2019-03-03T18:04:55Z"
+			"revision": "50fb3c750a1dccb1c81844c2379519b5bc3d33e3",
+			"revisionTime": "2019-03-06T13:52:50Z"
 		},
 		{
 			"checksumSHA1": "70O/Uk37QttEs1njiVYWbcje81I=",
@@ -1381,6 +1387,10 @@
 			"path": "google.golang.org/grpc/tap",
 			"revision": "914c52b240b05e4562b1d09e5e7cf3c57495d442",
 			"revisionTime": "2019-03-01T00:19:50Z"
+		},
+		{
+			"path": "https://github.com/andriipetruk/go-luminate",
+			"revision": ""
 		}
 	],
 	"rootPath": "github.com/andriipetruk/terraform-provider-luminate"
