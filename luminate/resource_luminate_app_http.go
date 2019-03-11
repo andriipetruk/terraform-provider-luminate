@@ -73,7 +73,7 @@ func resourceLuminateAppHttpUpdate(d *schema.ResourceData, meta interface{}) err
 	newAppHttp.ConnectionSettings.HealthURL = "/"
 	newAppHttp.ConnectionSettings.HealthMethod = "Head"
 	ctx := context.Background()
-	HttpApp, _, err := client.UpdateApp(ctx, newAppHttp, d.Id())
+	_, _, err := client.UpdateApp(ctx, newAppHttp, d.Id())
 	if err != nil {
 		return err
 	}
