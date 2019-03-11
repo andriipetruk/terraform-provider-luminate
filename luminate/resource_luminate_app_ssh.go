@@ -72,7 +72,7 @@ func resourceLuminateAppSshUpdate(d *schema.ResourceData, meta interface{}) erro
 	newAppSSH.ConnectionSettings.InternalAddress = d.Get("internal_address").(string)
 	newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: d.Get("ssh_login").(string)})
 	ctx := context.Background()
-	SSHApp, _, err := client.UpdateApp(ctx, newAppSSH, d.Id())
+	_, _, err := client.UpdateApp(ctx, newAppSSH, d.Id())
 	if err != nil {
 		return err
 	}
