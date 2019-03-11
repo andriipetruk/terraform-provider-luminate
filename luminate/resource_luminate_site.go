@@ -61,7 +61,7 @@ func resourceLuminateSiteUpdate(d *schema.ResourceData, meta interface{}) error 
 func resourceLuminateSiteDelete(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
-	client.DeleteConnector(ctx, d.Id())
+	client.DeleteSite(ctx, d.Id())
 	
 
 	return nil
