@@ -85,7 +85,7 @@ func resourceLuminateAppHttpDelete(d *schema.ResourceData, meta interface{}) err
 		
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
-	client.DeleteSite(ctx, d.Id())
+	client.DeleteApp(ctx, d.Id())
 	
 	return nil
 }
