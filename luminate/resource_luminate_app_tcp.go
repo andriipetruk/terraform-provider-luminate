@@ -71,11 +71,29 @@ func resourceLuminateAppTcpRead(d *schema.ResourceData, meta interface{}) error 
 }
 
 func resourceLuminateAppTcpUpdate(d *schema.ResourceData, meta interface{}) error {
+	
+	client := meta.(*goluminate.Client)
+	newAppTCP := goluminate.AppTcpCreateRequest{Name: d.Get("app_name").(string), Type: "TCP", IsVisible: true, IsNotificationEnabled: true}
+	var TcpAppPortList []string
+	var subdomain string
+	subdomain = strings.Replace(d.Get("app_name").(string), " ", "", -1)
+	newAppTCP.ConnectionSettings.Subdomain = strings.ToLower(subdomain)
+	TcpAppPortList = append(TcpAppPortList, d.Get("tcp_port").(string))
+	newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, goluminate.TcpTunnelSettings{Target: d.Get("internal_address").(string), Ports: TcpAppPortList})
+	ctx := context.Background()
+	TCPApp, _, err := client.UpdateApp(ctx, newAppTCP, d.Id())
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
 
 func resourceLuminateAppTcpDelete(d *schema.ResourceData, meta interface{}) error {
+	
+	client := meta.(*goluminate.Client)
+	ctx := context.Background()
+	client.DeleteApp(ctx, d.Id())
 
 	return nil
 }
