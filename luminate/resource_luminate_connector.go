@@ -65,7 +65,7 @@ func resourceLuminateConnectorRead(d *schema.ResourceData, meta interface{}) err
 }
 
 func resourceLuminateConnectorUpdate(d *schema.ResourceData, meta interface{}) error {
-	
+
 	client := meta.(*goluminate.Client)
 	connector := goluminate.NewConnectorRequest{Name: d.Get("connector_name").(string), Version: "1.0"}
 	ctx := context.Background()
@@ -78,7 +78,7 @@ func resourceLuminateConnectorUpdate(d *schema.ResourceData, meta interface{}) e
 }
 
 func resourceLuminateConnectorDelete(d *schema.ResourceData, meta interface{}) error {
-        
+
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
 	client.DeleteConnector(ctx, d.Id())

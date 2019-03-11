@@ -244,6 +244,20 @@ func (c *Client) CreateApp(ctx context.Context, newapp  interface{}) (*AppCreate
     return uResp, resp, nil
 }
 
+// https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/update-application
+func (c *Client) UpdateApp(ctx context.Context, app  interface{}, appID string) (*AppCreateResponse, *http.Response, error) { 
+
+    req, err := c.NewRequest("PUT", "v2/applications/"+appID, app)
+    if err != nil {
+        return nil, nil, err
+    }
+    uResp := new(AppCreateResponse)
+    resp, err := c.Do(ctx, req, uResp)
+    if err != nil {
+        return nil, resp, err
+    }
+    return uResp, resp, nil
+}
 
 
 //https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationidsite-bindingsiteid/assign-application-to-site
@@ -255,6 +269,34 @@ func (c *Client) BindAppToSite(ctx context.Context, appID string, siteID string)
     resp, err := c.Do(ctx, req, nil)
     if err != nil {
         return  resp, err
+    }
+    return resp, nil
+}
+
+// https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/get-application
+func (c *Client) GetApp(ctx context.Context, appID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("GET", "/v2/applications/"+appID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
+    }
+    return resp, nil
+}
+
+// https://luminatepublicapi.docs.apiary.io/#reference/applications/v2applicationsapplicationid/delete-application
+func (c *Client) DeleteApp(ctx context.Context, appID  string) (*http.Response, error) { 
+    
+    req, err := c.NewRequest("DELETE", "/v2/applications/"+appID, nil)
+    if err != nil {
+        return nil, err
+    }
+    resp, err := c.Do(ctx, req, nil)
+    if err != nil {
+        return resp, err
     }
     return resp, nil
 }

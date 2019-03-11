@@ -64,7 +64,7 @@ func resourceLuminateAppHttpRead(d *schema.ResourceData, meta interface{}) error
 }
 
 func resourceLuminateAppHttpUpdate(d *schema.ResourceData, meta interface{}) error {
-	
+
 	client := meta.(*goluminate.Client)
 
 	newAppHttp := goluminate.AppHttpCreateRequest{Name: d.Get("app_name").(string), Type: "HTTP", IsVisible: true, IsNotificationEnabled: true}
@@ -82,10 +82,10 @@ func resourceLuminateAppHttpUpdate(d *schema.ResourceData, meta interface{}) err
 }
 
 func resourceLuminateAppHttpDelete(d *schema.ResourceData, meta interface{}) error {
-		
+
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
 	client.DeleteApp(ctx, d.Id())
-	
+
 	return nil
 }

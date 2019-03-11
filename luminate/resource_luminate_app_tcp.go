@@ -71,7 +71,7 @@ func resourceLuminateAppTcpRead(d *schema.ResourceData, meta interface{}) error 
 }
 
 func resourceLuminateAppTcpUpdate(d *schema.ResourceData, meta interface{}) error {
-	
+
 	client := meta.(*goluminate.Client)
 	newAppTCP := goluminate.AppTcpCreateRequest{Name: d.Get("app_name").(string), Type: "TCP", IsVisible: true, IsNotificationEnabled: true}
 	var TcpAppPortList []string
@@ -90,7 +90,7 @@ func resourceLuminateAppTcpUpdate(d *schema.ResourceData, meta interface{}) erro
 }
 
 func resourceLuminateAppTcpDelete(d *schema.ResourceData, meta interface{}) error {
-	
+
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
 	client.DeleteApp(ctx, d.Id())

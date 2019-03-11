@@ -66,7 +66,7 @@ func resourceLuminateAppSshRead(d *schema.ResourceData, meta interface{}) error 
 }
 
 func resourceLuminateAppSshUpdate(d *schema.ResourceData, meta interface{}) error {
-	
+
 	client := meta.(*goluminate.Client)
 	newAppSSH := goluminate.AppSshCreateRequest{Name: d.Get("app_name").(string), Type: "SSH", IsVisible: true, IsNotificationEnabled: true}
 	newAppSSH.ConnectionSettings.InternalAddress = d.Get("internal_address").(string)
@@ -81,7 +81,7 @@ func resourceLuminateAppSshUpdate(d *schema.ResourceData, meta interface{}) erro
 }
 
 func resourceLuminateAppSshDelete(d *schema.ResourceData, meta interface{}) error {
-	
+
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
 	client.DeleteApp(ctx, d.Id())
