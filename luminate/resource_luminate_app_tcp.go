@@ -81,7 +81,7 @@ func resourceLuminateAppTcpUpdate(d *schema.ResourceData, meta interface{}) erro
 	TcpAppPortList = append(TcpAppPortList, d.Get("tcp_port").(string))
 	newAppTCP.TcpTunnelSettings = append(newAppTCP.TcpTunnelSettings, goluminate.TcpTunnelSettings{Target: d.Get("internal_address").(string), Ports: TcpAppPortList})
 	ctx := context.Background()
-	TCPApp, _, err := client.UpdateApp(ctx, newAppTCP, d.Id())
+	_, _, err := client.UpdateApp(ctx, newAppTCP, d.Id())
 	if err != nil {
 		return err
 	}
