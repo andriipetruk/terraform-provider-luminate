@@ -69,7 +69,7 @@ func resourceLuminateConnectorUpdate(d *schema.ResourceData, meta interface{}) e
 	client := meta.(*goluminate.Client)
 	connector := goluminate.NewConnectorRequest{Name: d.Get("connector_name").(string), Version: "1.0"}
 	ctx := context.Background()
-	newConnector, _, err := client.UpdateConnector(ctx, connector,  d.Id())
+	_, _, err := client.UpdateConnector(ctx, connector,  d.Id())
 	if err != nil {
 		return err
 	}
