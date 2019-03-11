@@ -50,7 +50,7 @@ func resourceLuminateSiteUpdate(d *schema.ResourceData, meta interface{}) error 
 	site := goluminate.NewSiteRequest{Name: d.Get("site_name").(string)}
 	ctx := context.Background()
 	//p.log.Debug("calling resourceLuminateSiteCreate()")
-	newSite, _, err := client.UpdateSite(ctx, site, d.Id())
+	_, _, err := client.UpdateSite(ctx, site, d.Id())
 	if err != nil {
 		return err
 	}
