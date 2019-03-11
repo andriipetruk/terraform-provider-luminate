@@ -64,11 +64,28 @@ func resourceLuminateAppHttpRead(d *schema.ResourceData, meta interface{}) error
 }
 
 func resourceLuminateAppHttpUpdate(d *schema.ResourceData, meta interface{}) error {
+	
+	client := meta.(*goluminate.Client)
+
+	newAppHttp := goluminate.AppHttpCreateRequest{Name: d.Get("app_name").(string), Type: "HTTP", IsVisible: true, IsNotificationEnabled: true}
+	newAppHttp.ConnectionSettings.InternalAddress = d.Get("internal_address").(string)
+	newAppHttp.ConnectionSettings.CustomRootPath = "/"
+	newAppHttp.ConnectionSettings.HealthURL = "/"
+	newAppHttp.ConnectionSettings.HealthMethod = "Head"
+	ctx := context.Background()
+	HttpApp, _, err := client.UpdateApp(ctx, newAppHttp, d.Id())
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
 
 func resourceLuminateAppHttpDelete(d *schema.ResourceData, meta interface{}) error {
-
+		
+	client := meta.(*goluminate.Client)
+	ctx := context.Background()
+	client.DeleteSite(ctx, d.Id())
+	
 	return nil
 }
