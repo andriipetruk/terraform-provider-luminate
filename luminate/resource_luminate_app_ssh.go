@@ -66,11 +66,25 @@ func resourceLuminateAppSshRead(d *schema.ResourceData, meta interface{}) error 
 }
 
 func resourceLuminateAppSshUpdate(d *schema.ResourceData, meta interface{}) error {
+	
+	client := meta.(*goluminate.Client)
+	newAppSSH := goluminate.AppSshCreateRequest{Name: d.Get("app_name").(string), Type: "SSH", IsVisible: true, IsNotificationEnabled: true}
+	newAppSSH.ConnectionSettings.InternalAddress = d.Get("internal_address").(string)
+	newAppSSH.SSHSettings.UserAccounts = append(newAppSSH.SSHSettings.UserAccounts, goluminate.SshUserAccounts{Name: d.Get("ssh_login").(string)})
+	ctx := context.Background()
+	SSHApp, _, err := client.UpdateApp(ctx, newAppSSH, d.Id())
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
 
 func resourceLuminateAppSshDelete(d *schema.ResourceData, meta interface{}) error {
+	
+	client := meta.(*goluminate.Client)
+	ctx := context.Background()
+	client.DeleteApp(ctx, d.Id())
 
 	return nil
 }
