@@ -46,10 +46,23 @@ func resourceLuminateSiteRead(d *schema.ResourceData, meta interface{}) error {
 
 func resourceLuminateSiteUpdate(d *schema.ResourceData, meta interface{}) error {
 
+	client := meta.(*goluminate.Client)
+	site := goluminate.NewSiteRequest{Name: d.Get("site_name").(string)}
+	ctx := context.Background()
+	//p.log.Debug("calling resourceLuminateSiteCreate()")
+	newSite, _, err := client.UpdateSite(ctx, site, d.Id())
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
 func resourceLuminateSiteDelete(d *schema.ResourceData, meta interface{}) error {
+	client := meta.(*goluminate.Client)
+	ctx := context.Background()
+	client.DeleteConnector(ctx, d.Id())
+	
 
 	return nil
 }
