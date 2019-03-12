@@ -48,7 +48,7 @@ func resourceLuminateSiteUpdate(d *schema.ResourceData, meta interface{}) error 
 
 	client := meta.(*goluminate.Client)
 	ctx := context.Background()
-	site, _ , err := client.GetSite(ctx, d.Id())
+	site, _, err := client.GetSite(ctx, d.Id())
 	if err != nil {
 		return err
 	}
