@@ -53,7 +53,7 @@ func resourceLuminateSiteUpdate(d *schema.ResourceData, meta interface{}) error 
 		return err
 	}
 	site.Name = d.Get("site_name").(string)
-	_, _, err := client.UpdateSite(ctx, site, d.Id())
+	_, _, err = client.UpdateSite(ctx, &site, d.Id())
 	if err != nil {
 		return err
 	}
