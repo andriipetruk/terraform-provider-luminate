@@ -64,7 +64,7 @@ func (c *Client) CreateSite(ctx context.Context, site  NewSiteRequest) (*NewSite
 }
 
 // https://luminatepublicapi.docs.apiary.io/#reference/sites/v2sitessiteid/update-site
-func (c *Client) UpdateSite(ctx context.Context, site  NewSiteRequest, siteID string) (*NewSiteResponse, *http.Response, error) { 
+func (c *Client) UpdateSite(ctx context.Context, site  *NewSiteRequest, siteID string) (*NewSiteResponse, *http.Response, error) { 
     
     req, err := c.NewRequest("PUT", "/v2/sites/"+siteID, site)
     if err != nil {
